@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
 import NewsCard from "./components/NewsCard";
 import newsData from "./data/newsData";
-import Navbar from "./components/Navbar";
 
 function App() {
+  const [category, setCategory] = useState("All");
+
+  const filteredNews =
+    category === "All"
+      ? newsData
+      : newsData.filter(
+          (n) => n.category?.toLowerCase() === category.toLowerCase()
+        );
+
   return (
     <>
-      <Navbar />
+      <Navbar setCategory={setCategory} />
 
       <div style={styles.container}>
-        {newsData.map((news, index) => (
+        {filteredNews.map((news, index) => (
           <NewsCard key={index} news={news} />
         ))}
       </div>
@@ -19,13 +28,13 @@ function App() {
 
 const styles = {
   container: {
-    maxWidth: "1100px",
-    margin: "0 auto",
-    padding: "15px",
+    maxWidth: "1200px",
+    margin: "20px auto",
+    padding: "0 15px",
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: "15px"
-  }
+    gap: "16px",
+  },
 };
 
 export default App;
