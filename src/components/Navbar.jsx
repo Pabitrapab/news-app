@@ -1,13 +1,21 @@
-export default function Navbar() {
+export default function Navbar({ setCategory }) {
   return (
     <div style={styles.navbar}>
       <div style={styles.logo}>Newz</div>
 
       <div style={styles.menu}>
-        <span>Home</span>
-        <span>Current Affairs</span>
-        <span>National</span>
-        <span>About</span>
+        <button style={styles.btn} onClick={() => setCategory("All")}>
+          Home
+        </button>
+        <button style={styles.btn} onClick={() => setCategory("Current")}>
+          Current Affairs
+        </button>
+        <button style={styles.btn} onClick={() => setCategory("National")}>
+          National
+        </button>
+        <button style={styles.btn} onClick={() => setCategory("Business")}>
+          Business
+        </button>
       </div>
     </div>
   );
@@ -18,18 +26,26 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "12px 20px",
+    padding: "12px 16px",
     backgroundColor: "#111",
-    color: "#fff"
+    color: "#fff",
+    flexWrap: "wrap",
   },
   logo: {
-    fontSize: "20px",
-    fontWeight: "bold"
+    fontSize: "22px",
+    fontWeight: "bold",
   },
   menu: {
     display: "flex",
-    gap: "15px",
-    fontSize: "14px",
-    cursor: "pointer"
-  }
+    gap: "10px",
+    flexWrap: "wrap",
+  },
+  btn: {
+    background: "transparent",
+    border: "1px solid #fff",
+    color: "#fff",
+    padding: "6px 10px",
+    cursor: "pointer",
+    borderRadius: "4px",
+  },
 };
