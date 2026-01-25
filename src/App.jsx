@@ -25,7 +25,7 @@ function App() {
     <>
       <Navbar setCategory={setCategory} />
 
-      {/* 🔥 INSHORTS STYLE SWIPE CONTAINER */}
+      {/* SWIPE CONTAINER */}
       <div
         style={{
           height: "100vh",
@@ -51,3 +51,4 @@ function App() {
 }
 
 export default App;
+
