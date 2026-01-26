@@ -1,56 +1,25 @@
 function Navbar({ setCategory, language, setLanguage }) {
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        width: "100%",
-        height: "56px",
-        background: "#111",
-        color: "#fff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0 14px",
-        zIndex: 1000
-      }}
-    >
-      {/* App Name */}
-      <div style={{ fontWeight: "bold", fontSize: "18px" }}>
-        SigmaNews
+    <div style={nav}>
+      <div style={logo}>SigmaNews</div>
+
+      <div style={menu}>
+        <span onClick={() => setCategory("All")}>Home</span>
+        <span onClick={() => setCategory("Current Affairs")}>Current</span>
+        <span onClick={() => setCategory("National")}>National</span>
       </div>
 
-      {/* Categories */}
-      <div style={{ fontSize: "13px" }}>
-        <span onClick={() => setCategory("All")} style={btn}>Home</span>
-        <span onClick={() => setCategory("Current Affairs")} style={btn}>
-          Current
-        </span>
-        <span onClick={() => setCategory("National")} style={btn}>
-          National
-        </span>
-      </div>
-
-      {/* Language */}
-      <div style={{ fontSize: "13px" }}>
+      <div style={lang}>
         <span
+          style={language === "en" ? activeLang : inactiveLang}
           onClick={() => setLanguage("en")}
-          style={{
-            cursor: "pointer",
-            fontWeight: language === "en" ? "bold" : "normal",
-            opacity: language === "en" ? 1 : 0.5
-          }}
         >
           EN
         </span>
-        {" | "}
+        <span style={{ margin: "0 6px", opacity: 0.6 }}>|</span>
         <span
+          style={language === "mr" ? activeLang : inactiveLang}
           onClick={() => setLanguage("mr")}
-          style={{
-            cursor: "pointer",
-            fontWeight: language === "mr" ? "bold" : "normal",
-            opacity: language === "mr" ? 1 : 0.5
-          }}
         >
           मराठी
         </span>
@@ -59,10 +28,47 @@ function Navbar({ setCategory, language, setLanguage }) {
   );
 }
 
-const btn = {
-  margin: "0 6px",
+const nav = {
+  position: "fixed",
+  top: 0,
+  width: "100%",
+  height: "60px",
+  background: "#0f172a",
+  color: "#fff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  padding: "0 14px",
+  zIndex: 1000
+};
+
+const logo = {
+  fontSize: "18px",
+  fontWeight: "700",
+  letterSpacing: "0.5px"
+};
+
+const menu = {
+  display: "flex",
+  gap: "14px",
+  fontSize: "13px",
+  opacity: 0.85
+};
+
+const lang = {
+  display: "flex",
+  alignItems: "center",
+  fontSize: "13px"
+};
+
+const activeLang = {
+  fontWeight: "700",
+  cursor: "pointer"
+};
+
+const inactiveLang = {
   cursor: "pointer",
-  opacity: 0.8
+  opacity: 0.6
 };
 
 export default Navbar;
