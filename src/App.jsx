@@ -1,17 +1,17 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import NewsCard from "./components/NewsCard";
 import newsData from "./data/newsData";
 
-/* 🔥 Translation cache (performance booster) */
+/* 🔹 Translation cache */
 const translationCache = {};
 
 function App() {
   const [category, setCategory] = useState("All");
-  const [language, setLanguage] = useState("en"); // en | mr
+  const [language, setLanguage] = useState("en");
   const [displayNews, setDisplayNews] = useState([]);
 
-  /* 🔹 Filter news by category */
+  /* 🔹 Filter by category */
   const filteredNews =
     category === "All"
       ? newsData
@@ -20,20 +20,16 @@ function App() {
             n.category?.toLowerCase() === category.toLowerCase()
         );
 
-  /* 🔹 Body scroll lock (mobile Inshorts feel) */
+  /* 🔹 Lock body scroll (mobile feel) */
   useEffect(() => {
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
   }, []);
 
-  /* 🔹 Translate English → Marathi */
+  /* 🔹 Translate EN → MR */
   const translateToMarathi = async (text) => {
     if (!text) return text;
-
-    if (translationCache[text]) {
-      return translationCache[text];
-    }
+    if (translationCache[text]) return translationCache[text];
 
     const res = await fetch("https://libretranslate.com/translate", {
       method: "POST",
@@ -51,9 +47,9 @@ function App() {
     return data.translatedText;
   };
 
-  /* 🔹 Process news based on language */
+  /* 🔹 Language based news */
   useEffect(() => {
-    const processNews = async () => {
+    const loadNews = async () => {
       if (language === "en") {
         setDisplayNews(filteredNews);
       } else {
@@ -68,54 +64,24 @@ function App() {
       }
     };
 
-    processNews();
+    loadNews();
   }, [language, filteredNews]);
 
   return (
     <>
-      {/* 🔹 Navbar */}
-      <Navbar setCategory={setCategory} />
+      <Navbar
+        setCategory={setCategory}
+        language={language}
+        setLanguage={setLanguage}
+      />
 
-      {/* 🔹 Language Toggle */}
-      <div
-        style={{
-          position: "fixed",
-          top: "12px",
-          right: "16px",
-          zIndex: 1000,
-          color: "#fff",
-          fontWeight: "bold",
-          fontSize: "14px"
-        }}
-      >
-        <span
-          style={{
-            cursor: "pointer",
-            opacity: language === "en" ? 1 : 0.5
-          }}
-          onClick={() => setLanguage("en")}
-        >
-          EN
-        </span>
-        {" | "}
-        <span
-          style={{
-            cursor: "pointer",
-            opacity: language === "mr" ? 1 : 0.5
-          }}
-          onClick={() => setLanguage("mr")}
-        >
-          मराठी
-        </span>
-      </div>
-
-      {/* 🔥 INSHORTS STYLE SWIPE CONTAINER */}
+      {/* 🔥 Swipe Feed */}
       <div
         style={{
           height: "100vh",
+          marginTop: "56px",
           overflowY: "scroll",
-          scrollSnapType: "y mandatory",
-          WebkitOverflowScrolling: "touch"
+          scrollSnapType: "y mandatory"
         }}
       >
         {displayNews.map((news, index) => (
