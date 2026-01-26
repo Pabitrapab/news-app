@@ -10,9 +10,10 @@ function NewsCard({ news, language }) {
   };
 
   return (
-    <div className="news-card">
-      <img src={news.image} alt="news" />
-
+    <div
+      className="news-card"
+      style={{ backgroundImage: url(${news.image}) }}
+    >
       <div className="overlay">
         <h1>{translate(news.title)}</h1>
         <p>{translate(news.description)}</p>
