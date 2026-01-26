@@ -17,8 +17,8 @@ function App() {
       <Navbar language={language} setLanguage={setLanguage} />
 
       <div className="feed">
-        {newsData.map((news, index) => (
-          <div className="snap" key={index}>
+        {newsData.map((news, idx) => (
+          <div className="snap" key={idx}>
             <NewsCard news={news} language={language} />
           </div>
         ))}
