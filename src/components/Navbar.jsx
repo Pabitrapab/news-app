@@ -1,51 +1,68 @@
-export default function Navbar({ setCategory }) {
+function Navbar({ setCategory, language, setLanguage }) {
   return (
-    <div style={styles.navbar}>
-      <div style={styles.logo}>Newz</div>
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        width: "100%",
+        height: "56px",
+        background: "#111",
+        color: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 14px",
+        zIndex: 1000
+      }}
+    >
+      {/* App Name */}
+      <div style={{ fontWeight: "bold", fontSize: "18px" }}>
+        SigmaNews
+      </div>
 
-      <div style={styles.menu}>
-        <button style={styles.btn} onClick={() => setCategory("All")}>
-          Home
-        </button>
-        <button style={styles.btn} onClick={() => setCategory("Current")}>
-          Current Affairs
-        </button>
-        <button style={styles.btn} onClick={() => setCategory("National")}>
+      {/* Categories */}
+      <div style={{ fontSize: "13px" }}>
+        <span onClick={() => setCategory("All")} style={btn}>Home</span>
+        <span onClick={() => setCategory("Current Affairs")} style={btn}>
+          Current
+        </span>
+        <span onClick={() => setCategory("National")} style={btn}>
           National
-        </button>
-        <button style={styles.btn} onClick={() => setCategory("Business")}>
-          Business
-        </button>
+        </span>
+      </div>
+
+      {/* Language */}
+      <div style={{ fontSize: "13px" }}>
+        <span
+          onClick={() => setLanguage("en")}
+          style={{
+            cursor: "pointer",
+            fontWeight: language === "en" ? "bold" : "normal",
+            opacity: language === "en" ? 1 : 0.5
+          }}
+        >
+          EN
+        </span>
+        {" | "}
+        <span
+          onClick={() => setLanguage("mr")}
+          style={{
+            cursor: "pointer",
+            fontWeight: language === "mr" ? "bold" : "normal",
+            opacity: language === "mr" ? 1 : 0.5
+          }}
+        >
+          मराठी
+        </span>
       </div>
     </div>
   );
 }
 
-const styles = {
-  navbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "12px 16px",
-    backgroundColor: "#111",
-    color: "#fff",
-    flexWrap: "wrap",
-  },
-  logo: {
-    fontSize: "22px",
-    fontWeight: "bold",
-  },
-  menu: {
-    display: "flex",
-    gap: "10px",
-    flexWrap: "wrap",
-  },
-  btn: {
-    background: "transparent",
-    border: "1px solid #fff",
-    color: "#fff",
-    padding: "6px 10px",
-    cursor: "pointer",
-    borderRadius: "4px",
-  },
+const btn = {
+  margin: "0 6px",
+  cursor: "pointer",
+  opacity: 0.8
 };
+
+export default Navbar;
