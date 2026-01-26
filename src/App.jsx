@@ -79,7 +79,7 @@ function App() {
       <div
         style={{
           height: "100vh",
-          marginTop: "56px",
+          marginTop: "60px",
           overflowY: "scroll",
           scrollSnapType: "y mandatory"
         }}
@@ -101,3 +101,4 @@ function App() {
 }
 
 export default App;
+
