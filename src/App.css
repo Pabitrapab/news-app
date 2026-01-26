@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 56px;
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.lang span {
+  margin: 0 6px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.lang .active {
+  opacity: 1;
+  font-weight: bold;
+}
+
+/* FEED */
+.feed {
+  margin-top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+/* EACH SCREEN */
+.snap {
+  height: calc(100vh - 56px);
+  scroll-snap-align: start;
+}
+
+/* NEWS CARD */
+.news-card {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: black;
+}
+
+/* IMAGE FIX (NO CUT ISSUE) */
+.news-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 FIXED */
+}
+
+/* OVERLAY TEXT */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.1)
+  );
+  color: white;
+}
+
+/* TEXT SIZE */
+.overlay h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.overlay p {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* DESKTOP FIX */
+@media (min-width: 768px) {
+  .feed {
+    max-width: 420px;
+    margin: 56px auto 0 auto;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+}
