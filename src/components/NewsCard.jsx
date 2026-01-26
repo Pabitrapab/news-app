@@ -1,61 +1,37 @@
-import React from "react";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography
-} from "@mui/material";
-
 function NewsCard({ news }) {
   return (
-    <Card
+    <div
       style={{
-        height: "100vh",
-        width: "100vw",
-        borderRadius: 0,
-        boxShadow: "none",
+        height: "100%",
+        background: "#fff",
         display: "flex",
         flexDirection: "column"
       }}
     >
-      {/* IMAGE */}
-      <CardMedia
-        component="img"
-        image={news.image}
-        alt={news.title}
-        style={{
-          height: "55vh",
-          width: "100%",
-          objectFit: "cover"
-        }}
-      />
+      {/* Image */}
+      <div style={{ height: "55%" }}>
+        <img
+          src={news.image}
+          alt=""
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover"
+          }}
+        />
+      </div>
 
-      {/* CONTENT */}
-      <CardContent
-        style={{
-          flex: 1,
-          overflowY: "auto"
-        }}
-      >
-        <Typography variant="h5" gutterBottom>
-          {news.title}
-        </Typography>
-
-        <Typography variant="body1" color="text.secondary">
+      {/* Content */}
+      <div style={{ padding: "16px" }}>
+        <h2 style={{ margin: "0 0 10px" }}>{news.title}</h2>
+        <p style={{ color: "#444", lineHeight: "1.5" }}>
           {news.description}
-        </Typography>
-
-        {news.source && (
-          <Typography
-            variant="caption"
-            display="block"
-            style={{ marginTop: "12px" }}
-          >
-            {news.source}
-          </Typography>
-        )}
-      </CardContent>
-    </Card>
+        </p>
+        <div style={{ marginTop: "10px", fontSize: "12px", color: "#777" }}>
+          {news.source || "Sigma News"}
+        </div>
+      </div>
+    </div>
   );
 }
 
